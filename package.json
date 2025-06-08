@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "rspack dev",
-    "build": "rspack build",
+    "build:rspack": "rspack build",
+    "build:rsbuild": "rsbuild build",
+    "build:trace": "RSPACK_PROFILE=OVERVIEW rspack build",
     "preview": "rspack preview"
   },
   "packageManager": "pnpm@10.5.0",
@@ -21,7 +23,9 @@
     "bizcharts": "^4.1.15",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
+    "css-loader": "^7.1.2",
     "dayjs": "^1.10.7",
+    "less-loader": "^12.3.0",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
@@ -39,13 +43,14 @@
     "@rsbuild/plugin-less": "1.2.2",
     "@rsbuild/plugin-react": "1.3.0",
     "@rsbuild/plugin-svgr": "1.2.0",
+    "@svgr/webpack": "8.1.0",
     "@types/node": "^16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-redux": "^7.1.33",
     "@types/react-router-dom": "^5.3.3",
     "execa": "^5",
-    "typescript": "^5",
-    "html-rspack-plugin": "6.1.2"
+    "html-rspack-plugin": "6.1.2",
+    "typescript": "^5"
   }
 }

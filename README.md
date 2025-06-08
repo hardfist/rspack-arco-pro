@@ -1,4 +1,4 @@
-# Rsbuild Project
+# Rspack Project for Testing
 
 ## Setup
 
