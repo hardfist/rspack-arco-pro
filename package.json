@@ -52,5 +52,11 @@
     "execa": "^5",
     "html-rspack-plugin": "6.1.2",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@rspack/core": "link:../rspack/packages/rspack",
+      "@rspack/cli": "link:../rspack/packages/rspack-cli"
+    }
   }
 }

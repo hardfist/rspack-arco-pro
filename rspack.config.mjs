@@ -1,5 +1,5 @@
 import rspack from '@rspack/core';
-import {  defineConfig} from '@rspack/cli';
+import { defineConfig } from '@rspack/cli';
 import HtmlRspackPlugin from 'html-rspack-plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -55,7 +55,7 @@ export default defineConfig({
     },
     rules: [
       /* config.module.rule('mjs') */
-       {
+      {
         test: /\.(js|jsx|ts|tsx|mjs)$/,
         use: {
           loader: 'builtin:swc-loader',
@@ -178,7 +178,7 @@ export default defineConfig({
           },
           /* config.module.rule('less').use('less') */
           {
-            loader:'less-loader',
+            loader: 'less-loader',
             options: {
               lessOptions: {
                 javascriptEnabled: true,
@@ -226,7 +226,7 @@ export default defineConfig({
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-               
+
               },
               sourceMap: false,
             }
@@ -252,14 +252,25 @@ export default defineConfig({
         generator: {
           filename: 'static/fonts/[name].[contenthash:8][ext]'
         }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              native: true,
+            },
+          },
+        ],
       }
     ]
   },
   optimization: {
     minimize: false,
-    concatenateModules:false,
-    sideEffects:false,
-    innerGraph:false
+    concatenateModules: false,
+    sideEffects: false,
+    innerGraph: false
   },
   plugins: [
     /* config.plugin('mini-css-extract') */
@@ -286,28 +297,28 @@ export default defineConfig({
         inject: 'head',
         filename: 'index.html',
         entryName: 'index',
-        templateParameters: (compilation, assets, assetTags, pluginOptions)=>{
-            let { mountId, templateParameters } = config.html, rspackConfig = compilation.options, htmlPlugin = {
-                tags: assetTags,
-                files: assets,
-                options: pluginOptions
-            };
-            return reduceConfigsWithContext({
-                initial: {
-                    mountId,
-                    entryName: entryName,
-                    assetPrefix: assetPrefix,
-                    compilation,
-                    htmlPlugin,
-                    rspackConfig,
-                    webpackConfig: rspackConfig,
-                    htmlWebpackPlugin: htmlPlugin
-                },
-                config: templateParameters,
-                ctx: {
-                    entryName: entryName
-                }
-            });
+        templateParameters: (compilation, assets, assetTags, pluginOptions) => {
+          let { mountId, templateParameters } = config.html, rspackConfig = compilation.options, htmlPlugin = {
+            tags: assetTags,
+            files: assets,
+            options: pluginOptions
+          };
+          return reduceConfigsWithContext({
+            initial: {
+              mountId,
+              entryName: entryName,
+              assetPrefix: assetPrefix,
+              compilation,
+              htmlPlugin,
+              rspackConfig,
+              webpackConfig: rspackConfig,
+              htmlWebpackPlugin: htmlPlugin
+            },
+            config: templateParameters,
+            ctx: {
+              entryName: entryName
+            }
+          });
         },
         scriptLoading: 'defer',
         title: 'Rsbuild App',
